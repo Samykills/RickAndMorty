@@ -10,9 +10,10 @@
 
 import React from 'react';
 import { StatusBar } from 'react-native';
-import {Router, Stack, Scene} from "react-native-router-flux";
+import { Router, Stack, Scene } from 'react-native-router-flux';
 
 import HomeScreen from './app/container/HomeScreen/HomeScreen';
+import SearchScreen from './app/container/SearchScreen/SearchScreen';
 
 class App extends React.Component {
   render = () => {
@@ -21,7 +22,8 @@ class App extends React.Component {
         <StatusBar barStyle='dark-content' />
         <Router>
           <Stack key='root'>
-            <Scene key='login' component={HomeScreen} hideNavBar />
+            <Scene key='homeScreen' component={HomeScreen} hideNavBar />
+            <Scene key='searchScreen' component={SearchScreen} hideNavBar />
           </Stack>
         </Router>
       </>

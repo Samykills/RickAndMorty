@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Animated, Platform, Text } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { Actions } from 'react-native-router-flux';
 
 const HEADER_MAX_HEIGHT = 1;
 
@@ -33,7 +34,7 @@ class FAB extends Component<Props> {
           ]
         }}
       >
-        <Icon raised name='search' type='font-awesome' color='#f50' onPress={() => alert('test')} />
+        <Icon raised name='search' type='font-awesome' color='#f50' onPress={Actions.searchScreen} />
       </Animated.View>
     );
   }
