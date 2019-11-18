@@ -1,25 +1,77 @@
 import React from 'react';
-import { SafeAreaView, View, Text, StyleSheet, ScrollView, Animated } from 'react-native';
+import { FlatList, View, Text, StyleSheet, Animated, Alert, Platform } from 'react-native';
+import ListItem from '../../component/ListItem';
+import RickAndMortyApiService from '../../service/RickAndMortyApiService';
+import FAB from "../../component/FAB";
 
 const HEADER_MAX_HEIGHT = 200;
-const HEADER_MIN_HEIGHT = 80;
+const HEADER_MIN_HEIGHT = Platform.OS == 'ios' ? 80 : 50;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
+const NUMBER_OF_COLUMNS = 3;
+const INITIAL_PAGE = 1;
 
 class HomeScreen extends React.Component {
   state = {
-    scrollY: new Animated.Value(0)
+    scrollY: new Animated.Value(0),
+    pageNo: INITIAL_PAGE,
+    characterList: [],
+    apiInfo: {},
+    loading: false,
+    totalPages: INITIAL_PAGE
+  };
+
+  componentDidMount = () => {
+    this.fetchCharacterData();
+  };
+
+  fetchCharacterData = () => {
+    if (!this.state.loading) {
+      this.setState({ loading: true });
+      console.log(this.state.pageNo, this.state.characterList);
+      RickAndMortyApiService.fetchCharacters(this.state.pageNo).then(
+        (res: any) => {
+          this.setState({
+            apiInfo: res.info,
+            characterList: [].concat(this.state.characterList, res.results),
+            pageNo: this.state.pageNo + 1,
+            loading: false,
+            totalPages: res.info.pages
+          });
+        },
+        err => {
+          this.setState({ loading: false });
+          Alert.alert('', err.toString());
+        }
+      );
+    }
   };
 
   _renderScrollViewContent = () => {
-    const data = Array.from({ length: 30 });
     return (
-      <View style={styles.scrollViewContent}>
-        {data.map((_, i) => (
-          <View key={i} style={styles.row}>
-            <Text>{i}</Text>
-          </View>
-        ))}
-      </View>
+      <FlatList
+        scrollEventThrottle={16}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }])}
+        numColumns={NUMBER_OF_COLUMNS}
+        contentContainerStyle={styles.scrollViewContent}
+        data={this.state.characterList}
+        refreshing={this.state.loading}
+        onEndReached={this.fetchCharacterData}
+        onEndReachedThreshold={0.99}
+        removeClippedSubviews={true}
+        renderItem={({ item, index }) => {
+          return <ListItem item={item} index={index} numColumns={NUMBER_OF_COLUMNS} />;
+        }}
+        ListEmptyComponent={() => {
+          return (
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+              <Text style={{ textAlign: 'center', fontWeight: 'bold' }}>All Characters from the show Rick and Morty!</Text>
+            </View>
+          );
+        }}
+        keyExtractor={(item, index) => {
+          return index + '';
+        }}
+      />
     );
   };
 
@@ -42,18 +94,13 @@ class HomeScreen extends React.Component {
 
     const headerOpacity = this.state.scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-      outputRange: [0, 1, 1],
+      outputRange: [0, 0, 1],
       extrapolate: 'clamp'
     });
+
     return (
       <View style={styles.fill}>
-        <ScrollView
-          style={styles.fill}
-          scrollEventThrottle={16}
-          onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }])}
-        >
-          {this._renderScrollViewContent()}
-        </ScrollView>
+        {this._renderScrollViewContent()}
         <Animated.View style={[styles.header, { height: headerHeight }]}>
           <Animated.Image
             style={[styles.backgroundImage, { opacity: imageOpacity, transform: [{ translateY: imageTranslate }] }]}
@@ -62,9 +109,10 @@ class HomeScreen extends React.Component {
             }}
           />
           <Animated.View style={[styles.bar, { opacity: headerOpacity }]}>
-            <Text style={styles.title}>Rick And Morty</Text>
+            <Text style={styles.title}>All Characters</Text>
           </Animated.View>
         </Animated.View>
+        <FAB scroll={this.state.scrollY}/>
       </View>
     );
   }
@@ -89,7 +137,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden'
   },
   bar: {
-    marginTop: 38,
+    marginTop: Platform.OS == 'ios' ? 38 : 15,
     height: 32,
     alignItems: 'center',
     justifyContent: 'center'

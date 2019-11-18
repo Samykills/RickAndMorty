@@ -9,17 +9,24 @@
  */
 
 import React from 'react';
-import { View, StatusBar, SafeAreaView } from 'react-native';
+import { StatusBar } from 'react-native';
+import {Router, Stack, Scene} from "react-native-router-flux";
 
 import HomeScreen from './app/container/HomeScreen/HomeScreen';
 
-const App = () => {
-  return (
-    <View style={{ flex: 1 }}>
-      <StatusBar barStyle='dark-content' />
-      <HomeScreen />
-    </View>
-  );
-};
+class App extends React.Component {
+  render = () => {
+    return (
+      <>
+        <StatusBar barStyle='dark-content' />
+        <Router>
+          <Stack key='root'>
+            <Scene key='login' component={HomeScreen} hideNavBar />
+          </Stack>
+        </Router>
+      </>
+    );
+  };
+}
 
 export default App;
