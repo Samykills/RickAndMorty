@@ -19,7 +19,7 @@ class App extends React.Component {
   render = () => {
     return (
       <>
-        <StatusBar barStyle='dark-content' />
+        <StatusBar barStyle='light-content' backgroundColor={'#212121'}/>
         <Router>
           <Stack key='root'>
             <Scene key='homeScreen' component={HomeScreen} hideNavBar />

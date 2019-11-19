@@ -2,13 +2,14 @@ import React from 'react';
 import { FlatList, View, Text, StyleSheet, Animated, Alert, Platform } from 'react-native';
 import ListItem from '../../component/ListItem';
 import RickAndMortyApiService from '../../service/RickAndMortyApiService';
-import FAB from "../../component/FAB";
+import FAB from '../../component/FAB';
 
 const HEADER_MAX_HEIGHT = 200;
 const HEADER_MIN_HEIGHT = Platform.OS == 'ios' ? 80 : 50;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 const NUMBER_OF_COLUMNS = 3;
 const INITIAL_PAGE = 1;
+const HEADER_IMAGE = 'https://comicsalliance.com/files/2016/01/rick-and-morty.jpg';
 
 class HomeScreen extends React.Component {
   state = {
@@ -58,8 +59,8 @@ class HomeScreen extends React.Component {
         onEndReached={this.fetchCharacterData}
         onEndReachedThreshold={0.99}
         removeClippedSubviews={true}
-        renderItem={({ item, index }) => {
-          return <ListItem item={item} index={index} numColumns={NUMBER_OF_COLUMNS} />;
+        renderItem={({ item }) => {
+          return <ListItem item={item} numColumns={NUMBER_OF_COLUMNS} />;
         }}
         ListEmptyComponent={() => {
           return (
@@ -103,28 +104,28 @@ class HomeScreen extends React.Component {
         {this._renderScrollViewContent()}
         <Animated.View style={[styles.header, { height: headerHeight }]}>
           <Animated.Image
+            resizeMode={'cover'}
             style={[styles.backgroundImage, { opacity: imageOpacity, transform: [{ translateY: imageTranslate }] }]}
-            source={{
-              uri: 'https://theawesomedaily.com/wp-content/uploads/2017/09/rick-and-morty-wallpaper-first-1.png'
-            }}
+            source={{ uri: HEADER_IMAGE }}
           />
           <Animated.View style={[styles.bar, { opacity: headerOpacity }]}>
             <Text style={styles.title}>All Characters</Text>
           </Animated.View>
         </Animated.View>
-        <FAB scroll={this.state.scrollY}/>
+        <FAB scroll={this.state.scrollY} />
       </View>
     );
   }
 }
 const styles = StyleSheet.create({
   fill: {
-    flex: 1
+    flex: 1,
+    backgroundColor:'#EEEEEE'
   },
   row: {
     height: 40,
     margin: 16,
-    backgroundColor: '#03A9F4',
+    backgroundColor: '#212121',
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    backgroundColor: '#03A9F4',
+    backgroundColor: '#212121',
     overflow: 'hidden'
   },
   bar: {

@@ -25,7 +25,7 @@ class ListItem extends PureComponent<Props> {
   };
 
   render() {
-    const { item, index, numColumns } = this.props;
+    const { item, numColumns } = this.props;
     const listItemScale = this.listItemAnimation.interpolate({
       inputRange: [0, 1],
       outputRange: [1, 1.2],
@@ -106,7 +106,6 @@ class ListItem extends PureComponent<Props> {
 }
 
 export interface Props {
-  index: number;
   item: object;
   numColumns: number;
 }

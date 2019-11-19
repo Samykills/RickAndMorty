@@ -34,7 +34,7 @@ class FAB extends Component<Props> {
           ]
         }}
       >
-        <Icon raised name='search' type='font-awesome' color='#f50' onPress={Actions.searchScreen} />
+        <Icon raised name='search' type='font-awesome' color='#263238' onPress={Actions.searchScreen} />
       </Animated.View>
     );
   }
