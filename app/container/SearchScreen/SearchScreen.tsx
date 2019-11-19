@@ -41,7 +41,9 @@ class SearchScreen extends Component {
       <SafeAreaView style={{ flex: 1, backgroundColor: '#212121' }}>
         <View style={{ flex: 1, backgroundColor: '#EEEEEE' }}>
           <SearchBar
-            placeholder='Search'
+            selectTextOnFocus={true}
+            autoFocus={true}
+            placeholder="Search"
             round
             onChangeText={v => {
               this.setState({ searchText: v }, this.searchCharacters);

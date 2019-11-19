@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, Dimensions, Animated, Text, Image, TouchableWithoutFeedback } from 'react-native';
-import PropTypes from 'prop-types';
+import { Dimensions, Animated, Text, TouchableWithoutFeedback } from 'react-native';
 
 const ITEM_WIDTH = Dimensions.get('window').width;
 const ANIMATION_DURATION = 250;
@@ -65,7 +64,7 @@ class ListItem extends PureComponent<Props> {
               borderRadius: 5,
               opacity: listItemImageOpacity
             }}
-            resizeMode='cover'
+            resizeMode="cover"
             source={{
               uri: item.image
             }}
@@ -84,7 +83,7 @@ class ListItem extends PureComponent<Props> {
                 textAlign: 'center',
                 fontWeight: 'bold'
               }}
-              ellipsizeMode='tail'
+              ellipsizeMode="tail"
               numberOfLines={2}
             >
               {item.name}
