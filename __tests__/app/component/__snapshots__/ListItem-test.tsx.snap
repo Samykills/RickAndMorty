@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItem renders correctly 1`] = `
+<View
+  accessible={true}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "margin": 10,
+      "transform": Array [
+        Object {
+          "scale": 1,
+        },
+      ],
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "https://comicsalliance.com/files/2016/01/rick-and-morty.jpg",
+      }
+    }
+    style={
+      Object {
+        "borderRadius": 5,
+        "height": 100,
+        "opacity": 0.8,
+        "width": 230,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#FAFAFAA0",
+        "opacity": 1,
+        "position": "absolute",
+        "top": "50%",
+        "width": 230,
+      }
+    }
+  >
+    <Text
+      ellipsizeMode="tail"
+      numberOfLines={2}
+      style={
+        Object {
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      Rick
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "green",
+          "fontSize": 9,
+          "textAlign": "center",
+        }
+      }
+    >
+      Alive
+    </Text>
+  </View>
+</View>
+`;

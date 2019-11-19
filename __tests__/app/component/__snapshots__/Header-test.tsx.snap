@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#212121",
+      "height": 200,
+      "left": 0,
+      "overflow": "hidden",
+      "position": "absolute",
+      "right": 0,
+      "top": 0,
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "https://comicsalliance.com/files/2016/01/rick-and-morty.jpg",
+      }
+    }
+    style={
+      Object {
+        "height": 200,
+        "left": 0,
+        "opacity": 1,
+        "position": "absolute",
+        "resizeMode": "cover",
+        "right": 0,
+        "top": 0,
+        "transform": Array [
+          Object {
+            "translateY": 0,
+          },
+        ],
+        "width": undefined,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "height": 32,
+        "justifyContent": "center",
+        "marginTop": 38,
+        "opacity": 0,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "backgroundColor": "transparent",
+          "color": "white",
+          "fontSize": 18,
+        }
+      }
+    >
+      All Characters
+    </Text>
+  </View>
+</View>
+`;

@@ -26,7 +26,6 @@ class HomeScreen extends React.Component {
   fetchCharacterData = () => {
     if (!this.state.loading) {
       this.setState({ loading: true });
-      console.log(this.state.pageNo, this.state.characterList);
       RickAndMortyApiService.fetchCharacters(this.state.pageNo).then(
         (res: any) => {
           this.setState({
