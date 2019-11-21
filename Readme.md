@@ -20,4 +20,6 @@ The Application has 2 screens.
 
 ```yarn ios```
 
+### Run Test
 
+```yarn test```
