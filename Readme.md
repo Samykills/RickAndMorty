@@ -8,15 +8,15 @@ The Application has 2 screens.
     1.  All Character Screens.
     2.  Search Character Screens.
 
-# Initial Setup
+### Initial Setup
 
 ```yarn install```
 
-# How to run Android App on Emulator
+### How to run Android App on Emulator
 
 ```yarn android```
 
-# How to run iOS App on Emulator
+### How to run iOS App on Emulator
 
 ```yarn ios```
 
