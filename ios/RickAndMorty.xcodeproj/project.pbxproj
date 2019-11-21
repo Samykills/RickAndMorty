@@ -148,7 +148,6 @@
 				B742A90AB215D11886FF6B9E /* Pods-RickAndMortyTests.debug.xcconfig */,
 				64DD24559EF2EBA36C75F509 /* Pods-RickAndMortyTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -309,6 +308,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);

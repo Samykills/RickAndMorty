@@ -29,6 +29,9 @@ class SearchScreen extends Component {
           this.setState({ loading: false, error: '', results: [] });
         }
       );
+    } else {
+      //in case of when search text was cleared
+      this.setState({ results: [] });
     }
   };
 
