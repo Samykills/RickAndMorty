@@ -15,20 +15,18 @@ import { Router, Stack, Scene } from 'react-native-router-flux';
 import HomeScreen from './app/container/HomeScreen/HomeScreen';
 import SearchScreen from './app/container/SearchScreen/SearchScreen';
 
-class App extends React.Component {
-  render = () => {
-    return (
-      <>
-        <StatusBar barStyle='light-content' backgroundColor={'#212121'}/>
-        <Router>
-          <Stack key='root'>
-            <Scene key='homeScreen' component={HomeScreen} hideNavBar />
-            <Scene key='searchScreen' component={SearchScreen} hideNavBar />
-          </Stack>
-        </Router>
-      </>
-    );
-  };
-}
+const App = () =>
+  (
+    <>
+      <StatusBar barStyle='light-content' backgroundColor={'#212121'} />
+      <Router>
+        <Stack key='root'>
+          <Scene key='homeScreen' component={HomeScreen} hideNavBar />
+          <Scene key='searchScreen' component={SearchScreen} hideNavBar />
+        </Stack>
+      </Router>
+    </>
+  );
+
 
 export default App;
